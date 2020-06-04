@@ -1,0 +1,435 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> RULE
+Rule 1     RULE -> RULENAME COLON RULENODES
+Rule 2     RULE -> RULENAME COLON PARAM RULENODES
+Rule 3     RULE -> RULENAME COLON RULENODES IGNORECHARACTERS
+Rule 4     RULE -> RULENAME COLON PARAM RULENODES IGNORECHARACTERS
+Rule 5     RULENAME -> ID
+Rule 6     RULENAME -> ID PARAM
+Rule 7     PARAM -> LSQUREBUCKET PARAMIDS RSQUREBUCKET
+Rule 8     PARAMIDS -> PARAMID
+Rule 9     PARAMIDS -> PARAMIDS COMMA PARAMID
+Rule 10    PARAMID -> ID
+Rule 11    PARAMID -> PLUS ID
+Rule 12    PARAMID -> NEGATION ID
+Rule 13    PARAMID -> QUESTIONMARK ID
+Rule 14    RULENODES -> RULENODE
+Rule 15    RULENODES -> RULENODES RULENODE
+Rule 16    RULENODE -> TEXTNODE
+Rule 17    RULENODE -> NAMENONE
+Rule 18    TEXTNODE -> TEXT
+Rule 19    TEXTNODE -> TEXT QUESTIONMARK
+Rule 20    NAMENONE -> RULENAME
+Rule 21    NAMENONE -> RULENAME QUESTIONMARK
+
+Terminals, with rules where they appear
+
+COLON                : 1 2 3 4
+COMMA                : 9
+ID                   : 5 6 10 11 12 13
+IGNORECHARACTERS     : 3 4
+LSQUREBUCKET         : 7
+NEGATION             : 12
+PLUS                 : 11
+QUESTIONMARK         : 13 19 21
+RSQUREBUCKET         : 7
+TEXT                 : 18 19
+error                : 
+
+Nonterminals, with rules where they appear
+
+NAMENONE             : 17
+PARAM                : 2 4 6
+PARAMID              : 8 9
+PARAMIDS             : 7 9
+RULE                 : 0
+RULENAME             : 1 2 3 4 20 21
+RULENODE             : 14 15
+RULENODES            : 1 2 3 4 15
+TEXTNODE             : 16
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . RULE
+    (1) RULE -> . RULENAME COLON RULENODES
+    (2) RULE -> . RULENAME COLON PARAM RULENODES
+    (3) RULE -> . RULENAME COLON RULENODES IGNORECHARACTERS
+    (4) RULE -> . RULENAME COLON PARAM RULENODES IGNORECHARACTERS
+    (5) RULENAME -> . ID
+    (6) RULENAME -> . ID PARAM
+
+    ID              shift and go to state 3
+
+    RULE                           shift and go to state 1
+    RULENAME                       shift and go to state 2
+
+state 1
+
+    (0) S' -> RULE .
+
+
+
+state 2
+
+    (1) RULE -> RULENAME . COLON RULENODES
+    (2) RULE -> RULENAME . COLON PARAM RULENODES
+    (3) RULE -> RULENAME . COLON RULENODES IGNORECHARACTERS
+    (4) RULE -> RULENAME . COLON PARAM RULENODES IGNORECHARACTERS
+
+    COLON           shift and go to state 4
+
+
+state 3
+
+    (5) RULENAME -> ID .
+    (6) RULENAME -> ID . PARAM
+    (7) PARAM -> . LSQUREBUCKET PARAMIDS RSQUREBUCKET
+
+    COLON           reduce using rule 5 (RULENAME -> ID .)
+    QUESTIONMARK    reduce using rule 5 (RULENAME -> ID .)
+    IGNORECHARACTERS reduce using rule 5 (RULENAME -> ID .)
+    TEXT            reduce using rule 5 (RULENAME -> ID .)
+    ID              reduce using rule 5 (RULENAME -> ID .)
+    $end            reduce using rule 5 (RULENAME -> ID .)
+    LSQUREBUCKET    shift and go to state 6
+
+    PARAM                          shift and go to state 5
+
+state 4
+
+    (1) RULE -> RULENAME COLON . RULENODES
+    (2) RULE -> RULENAME COLON . PARAM RULENODES
+    (3) RULE -> RULENAME COLON . RULENODES IGNORECHARACTERS
+    (4) RULE -> RULENAME COLON . PARAM RULENODES IGNORECHARACTERS
+    (14) RULENODES -> . RULENODE
+    (15) RULENODES -> . RULENODES RULENODE
+    (7) PARAM -> . LSQUREBUCKET PARAMIDS RSQUREBUCKET
+    (16) RULENODE -> . TEXTNODE
+    (17) RULENODE -> . NAMENONE
+    (18) TEXTNODE -> . TEXT
+    (19) TEXTNODE -> . TEXT QUESTIONMARK
+    (20) NAMENONE -> . RULENAME
+    (21) NAMENONE -> . RULENAME QUESTIONMARK
+    (5) RULENAME -> . ID
+    (6) RULENAME -> . ID PARAM
+
+    LSQUREBUCKET    shift and go to state 6
+    TEXT            shift and go to state 13
+    ID              shift and go to state 3
+
+    RULENAME                       shift and go to state 7
+    RULENODES                      shift and go to state 8
+    PARAM                          shift and go to state 9
+    RULENODE                       shift and go to state 10
+    TEXTNODE                       shift and go to state 11
+    NAMENONE                       shift and go to state 12
+
+state 5
+
+    (6) RULENAME -> ID PARAM .
+
+    COLON           reduce using rule 6 (RULENAME -> ID PARAM .)
+    QUESTIONMARK    reduce using rule 6 (RULENAME -> ID PARAM .)
+    IGNORECHARACTERS reduce using rule 6 (RULENAME -> ID PARAM .)
+    TEXT            reduce using rule 6 (RULENAME -> ID PARAM .)
+    ID              reduce using rule 6 (RULENAME -> ID PARAM .)
+    $end            reduce using rule 6 (RULENAME -> ID PARAM .)
+
+
+state 6
+
+    (7) PARAM -> LSQUREBUCKET . PARAMIDS RSQUREBUCKET
+    (8) PARAMIDS -> . PARAMID
+    (9) PARAMIDS -> . PARAMIDS COMMA PARAMID
+    (10) PARAMID -> . ID
+    (11) PARAMID -> . PLUS ID
+    (12) PARAMID -> . NEGATION ID
+    (13) PARAMID -> . QUESTIONMARK ID
+
+    ID              shift and go to state 16
+    PLUS            shift and go to state 17
+    NEGATION        shift and go to state 18
+    QUESTIONMARK    shift and go to state 19
+
+    PARAMIDS                       shift and go to state 14
+    PARAMID                        shift and go to state 15
+
+state 7
+
+    (20) NAMENONE -> RULENAME .
+    (21) NAMENONE -> RULENAME . QUESTIONMARK
+
+    IGNORECHARACTERS reduce using rule 20 (NAMENONE -> RULENAME .)
+    TEXT            reduce using rule 20 (NAMENONE -> RULENAME .)
+    ID              reduce using rule 20 (NAMENONE -> RULENAME .)
+    $end            reduce using rule 20 (NAMENONE -> RULENAME .)
+    QUESTIONMARK    shift and go to state 20
+
+
+state 8
+
+    (1) RULE -> RULENAME COLON RULENODES .
+    (3) RULE -> RULENAME COLON RULENODES . IGNORECHARACTERS
+    (15) RULENODES -> RULENODES . RULENODE
+    (16) RULENODE -> . TEXTNODE
+    (17) RULENODE -> . NAMENONE
+    (18) TEXTNODE -> . TEXT
+    (19) TEXTNODE -> . TEXT QUESTIONMARK
+    (20) NAMENONE -> . RULENAME
+    (21) NAMENONE -> . RULENAME QUESTIONMARK
+    (5) RULENAME -> . ID
+    (6) RULENAME -> . ID PARAM
+
+    $end            reduce using rule 1 (RULE -> RULENAME COLON RULENODES .)
+    IGNORECHARACTERS shift and go to state 21
+    TEXT            shift and go to state 13
+    ID              shift and go to state 3
+
+    RULENAME                       shift and go to state 7
+    RULENODE                       shift and go to state 22
+    TEXTNODE                       shift and go to state 11
+    NAMENONE                       shift and go to state 12
+
+state 9
+
+    (2) RULE -> RULENAME COLON PARAM . RULENODES
+    (4) RULE -> RULENAME COLON PARAM . RULENODES IGNORECHARACTERS
+    (14) RULENODES -> . RULENODE
+    (15) RULENODES -> . RULENODES RULENODE
+    (16) RULENODE -> . TEXTNODE
+    (17) RULENODE -> . NAMENONE
+    (18) TEXTNODE -> . TEXT
+    (19) TEXTNODE -> . TEXT QUESTIONMARK
+    (20) NAMENONE -> . RULENAME
+    (21) NAMENONE -> . RULENAME QUESTIONMARK
+    (5) RULENAME -> . ID
+    (6) RULENAME -> . ID PARAM
+
+    TEXT            shift and go to state 13
+    ID              shift and go to state 3
+
+    RULENAME                       shift and go to state 7
+    RULENODES                      shift and go to state 23
+    RULENODE                       shift and go to state 10
+    TEXTNODE                       shift and go to state 11
+    NAMENONE                       shift and go to state 12
+
+state 10
+
+    (14) RULENODES -> RULENODE .
+
+    IGNORECHARACTERS reduce using rule 14 (RULENODES -> RULENODE .)
+    TEXT            reduce using rule 14 (RULENODES -> RULENODE .)
+    ID              reduce using rule 14 (RULENODES -> RULENODE .)
+    $end            reduce using rule 14 (RULENODES -> RULENODE .)
+
+
+state 11
+
+    (16) RULENODE -> TEXTNODE .
+
+    IGNORECHARACTERS reduce using rule 16 (RULENODE -> TEXTNODE .)
+    TEXT            reduce using rule 16 (RULENODE -> TEXTNODE .)
+    ID              reduce using rule 16 (RULENODE -> TEXTNODE .)
+    $end            reduce using rule 16 (RULENODE -> TEXTNODE .)
+
+
+state 12
+
+    (17) RULENODE -> NAMENONE .
+
+    IGNORECHARACTERS reduce using rule 17 (RULENODE -> NAMENONE .)
+    TEXT            reduce using rule 17 (RULENODE -> NAMENONE .)
+    ID              reduce using rule 17 (RULENODE -> NAMENONE .)
+    $end            reduce using rule 17 (RULENODE -> NAMENONE .)
+
+
+state 13
+
+    (18) TEXTNODE -> TEXT .
+    (19) TEXTNODE -> TEXT . QUESTIONMARK
+
+    IGNORECHARACTERS reduce using rule 18 (TEXTNODE -> TEXT .)
+    TEXT            reduce using rule 18 (TEXTNODE -> TEXT .)
+    ID              reduce using rule 18 (TEXTNODE -> TEXT .)
+    $end            reduce using rule 18 (TEXTNODE -> TEXT .)
+    QUESTIONMARK    shift and go to state 24
+
+
+state 14
+
+    (7) PARAM -> LSQUREBUCKET PARAMIDS . RSQUREBUCKET
+    (9) PARAMIDS -> PARAMIDS . COMMA PARAMID
+
+    RSQUREBUCKET    shift and go to state 25
+    COMMA           shift and go to state 26
+
+
+state 15
+
+    (8) PARAMIDS -> PARAMID .
+
+    RSQUREBUCKET    reduce using rule 8 (PARAMIDS -> PARAMID .)
+    COMMA           reduce using rule 8 (PARAMIDS -> PARAMID .)
+
+
+state 16
+
+    (10) PARAMID -> ID .
+
+    RSQUREBUCKET    reduce using rule 10 (PARAMID -> ID .)
+    COMMA           reduce using rule 10 (PARAMID -> ID .)
+
+
+state 17
+
+    (11) PARAMID -> PLUS . ID
+
+    ID              shift and go to state 27
+
+
+state 18
+
+    (12) PARAMID -> NEGATION . ID
+
+    ID              shift and go to state 28
+
+
+state 19
+
+    (13) PARAMID -> QUESTIONMARK . ID
+
+    ID              shift and go to state 29
+
+
+state 20
+
+    (21) NAMENONE -> RULENAME QUESTIONMARK .
+
+    IGNORECHARACTERS reduce using rule 21 (NAMENONE -> RULENAME QUESTIONMARK .)
+    TEXT            reduce using rule 21 (NAMENONE -> RULENAME QUESTIONMARK .)
+    ID              reduce using rule 21 (NAMENONE -> RULENAME QUESTIONMARK .)
+    $end            reduce using rule 21 (NAMENONE -> RULENAME QUESTIONMARK .)
+
+
+state 21
+
+    (3) RULE -> RULENAME COLON RULENODES IGNORECHARACTERS .
+
+    $end            reduce using rule 3 (RULE -> RULENAME COLON RULENODES IGNORECHARACTERS .)
+
+
+state 22
+
+    (15) RULENODES -> RULENODES RULENODE .
+
+    IGNORECHARACTERS reduce using rule 15 (RULENODES -> RULENODES RULENODE .)
+    TEXT            reduce using rule 15 (RULENODES -> RULENODES RULENODE .)
+    ID              reduce using rule 15 (RULENODES -> RULENODES RULENODE .)
+    $end            reduce using rule 15 (RULENODES -> RULENODES RULENODE .)
+
+
+state 23
+
+    (2) RULE -> RULENAME COLON PARAM RULENODES .
+    (4) RULE -> RULENAME COLON PARAM RULENODES . IGNORECHARACTERS
+    (15) RULENODES -> RULENODES . RULENODE
+    (16) RULENODE -> . TEXTNODE
+    (17) RULENODE -> . NAMENONE
+    (18) TEXTNODE -> . TEXT
+    (19) TEXTNODE -> . TEXT QUESTIONMARK
+    (20) NAMENONE -> . RULENAME
+    (21) NAMENONE -> . RULENAME QUESTIONMARK
+    (5) RULENAME -> . ID
+    (6) RULENAME -> . ID PARAM
+
+    $end            reduce using rule 2 (RULE -> RULENAME COLON PARAM RULENODES .)
+    IGNORECHARACTERS shift and go to state 30
+    TEXT            shift and go to state 13
+    ID              shift and go to state 3
+
+    RULENAME                       shift and go to state 7
+    RULENODE                       shift and go to state 22
+    TEXTNODE                       shift and go to state 11
+    NAMENONE                       shift and go to state 12
+
+state 24
+
+    (19) TEXTNODE -> TEXT QUESTIONMARK .
+
+    IGNORECHARACTERS reduce using rule 19 (TEXTNODE -> TEXT QUESTIONMARK .)
+    TEXT            reduce using rule 19 (TEXTNODE -> TEXT QUESTIONMARK .)
+    ID              reduce using rule 19 (TEXTNODE -> TEXT QUESTIONMARK .)
+    $end            reduce using rule 19 (TEXTNODE -> TEXT QUESTIONMARK .)
+
+
+state 25
+
+    (7) PARAM -> LSQUREBUCKET PARAMIDS RSQUREBUCKET .
+
+    COLON           reduce using rule 7 (PARAM -> LSQUREBUCKET PARAMIDS RSQUREBUCKET .)
+    QUESTIONMARK    reduce using rule 7 (PARAM -> LSQUREBUCKET PARAMIDS RSQUREBUCKET .)
+    IGNORECHARACTERS reduce using rule 7 (PARAM -> LSQUREBUCKET PARAMIDS RSQUREBUCKET .)
+    TEXT            reduce using rule 7 (PARAM -> LSQUREBUCKET PARAMIDS RSQUREBUCKET .)
+    ID              reduce using rule 7 (PARAM -> LSQUREBUCKET PARAMIDS RSQUREBUCKET .)
+    $end            reduce using rule 7 (PARAM -> LSQUREBUCKET PARAMIDS RSQUREBUCKET .)
+
+
+state 26
+
+    (9) PARAMIDS -> PARAMIDS COMMA . PARAMID
+    (10) PARAMID -> . ID
+    (11) PARAMID -> . PLUS ID
+    (12) PARAMID -> . NEGATION ID
+    (13) PARAMID -> . QUESTIONMARK ID
+
+    ID              shift and go to state 16
+    PLUS            shift and go to state 17
+    NEGATION        shift and go to state 18
+    QUESTIONMARK    shift and go to state 19
+
+    PARAMID                        shift and go to state 31
+
+state 27
+
+    (11) PARAMID -> PLUS ID .
+
+    RSQUREBUCKET    reduce using rule 11 (PARAMID -> PLUS ID .)
+    COMMA           reduce using rule 11 (PARAMID -> PLUS ID .)
+
+
+state 28
+
+    (12) PARAMID -> NEGATION ID .
+
+    RSQUREBUCKET    reduce using rule 12 (PARAMID -> NEGATION ID .)
+    COMMA           reduce using rule 12 (PARAMID -> NEGATION ID .)
+
+
+state 29
+
+    (13) PARAMID -> QUESTIONMARK ID .
+
+    RSQUREBUCKET    reduce using rule 13 (PARAMID -> QUESTIONMARK ID .)
+    COMMA           reduce using rule 13 (PARAMID -> QUESTIONMARK ID .)
+
+
+state 30
+
+    (4) RULE -> RULENAME COLON PARAM RULENODES IGNORECHARACTERS .
+
+    $end            reduce using rule 4 (RULE -> RULENAME COLON PARAM RULENODES IGNORECHARACTERS .)
+
+
+state 31
+
+    (9) PARAMIDS -> PARAMIDS COMMA PARAMID .
+
+    RSQUREBUCKET    reduce using rule 9 (PARAMIDS -> PARAMIDS COMMA PARAMID .)
+    COMMA           reduce using rule 9 (PARAMIDS -> PARAMIDS COMMA PARAMID .)
+
